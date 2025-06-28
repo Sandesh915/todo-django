@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Things Done?</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+</head>
+<body>
+
+    <div class="signup-login">
+        <h1>HELLO {{user}}</h1>
+    </div>
+
+
+  <div class="container my-5">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Get Things Done?</h4>
+      </div>
+      <div class="anca"><a href="{% url "signout" %}" class="btn btn-primary"><i class="fa-solid fa-right-from-bracket"></i></a></div>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group m-3">
+            <label for="task-input">Add Today's Task?</label>
+            <input type="text" class="form-control" id="task-input" name="task" placeholder="Add Task">
+          </div>
+          <button type="submit" class="btn btn-primary">Add Task</button>
+        </form>
+        {% for todo in res %}
+        <div class="Todo">
+            <p>{{todo.title}}</p>
+        </div>
+
+        <a href="/edit_todo/{{todo.srno}}"><i class="fa-solid fa-pen-to-square"></i></a>        
+        <a href="/delete_todo/{{todo.srno}}"><i class="fa-solid fa-trash"></i></a>        
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Things Done?</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+</head>
+<body>
+<div class="container my-5">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Hello, {{ user }}</h4>
+    </div>
+    <div class="card-body">
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group m-3">
+          <label for="task-input">Edit your Todo</label>
+          <input type="text" class="form-control" id="task-input" name="task"
+                 placeholder="Update Task"
+                 value="{{ obj.title }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Task</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
